@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Thymeleaf内置变量</title>
+    <title>Thymeleaf与SpringMVC集成内置变量</title>
 </head>
 <body>
     <h1 style="text-align: center">Thymeleaf内置变量</h1>
@@ -32,14 +32,15 @@
             </p>
         </div>
 
-        <h3>SpringMVC ModelAndView</h3>
+        <h3>SpringMVC Model对象</h3>
         <div>
             <span th:text="${springMVCP1}"></span><br/>
             <span th:text="${springMVCP2}"></span><br/>
             <span th:text="${springMVCP3}"></span><br/>
         </div>
 
-        <h3>ServletContext</h3>
+        <h3>ServletContext对象</h3>
+        <p>Thymeleaf可以直接通过${@bean_name}来获取Spring IOC容器中的对象</p>
         <div>
             <span th:text="${@servletContext.getAttribute('name')}"></span><br/>
             <span th:text="${@servletContext.getAttribute('email')}"></span><br/>
@@ -48,8 +49,12 @@
 
 
 
-
-
+        <h3>获取Spring IOC容器中的对象</h3>
+        <div>
+            <span th:text="${@servletContext.getAttribute('name')}"></span><br/>
+            <span th:text="${@servletContext.getAttribute('email')}"></span><br/>
+            <span th:text="${@servletContext.getAttribute('phone')}"></span><br/>
+        </div>
 
     </div>
 </body>
