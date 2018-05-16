@@ -11,6 +11,7 @@
 <p>
     <span>${...}  变量表达式</span>
 </p>
+<div th:text="${msg}">变量表达式</div>
 
 <h2>选择变量表达式</h2>
 <p>
@@ -26,7 +27,7 @@
 
 <h2>消息表达式</h2>
 <p>
-    <span>#{...}  消息表达式，获取国际化中的消息</span>
+    <span>#{...}  消息表达式，获取国际化中的消息</span><br/>
     <span th:text="#{msg}">国际化消息</span>
 </p>
 
@@ -43,5 +44,8 @@
 </ul>
 </p>
 <a th:href="@{/tag}">Thymeleaf标签</a>
+<a th:href="@{/tag/${msg}}">路径参数</a>
+<a th:href="@{/tag/${msg}(id=${time})}">一个请求参数</a>
+<a th:href="@{/tag/${msg}(id=${time},name='zs')}">多个请求参数</a>
 </body>
 </html>
