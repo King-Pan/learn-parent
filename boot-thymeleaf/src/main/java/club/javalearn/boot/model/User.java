@@ -2,6 +2,8 @@ package club.javalearn.boot.model;
 
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * learn-parent
  *
@@ -14,4 +16,5 @@ public class User {
     private String nikeName;
     private Integer age;
     private String roleName;
+    private Date lastLoginTime;
 }

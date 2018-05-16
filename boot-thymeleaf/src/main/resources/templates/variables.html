@@ -42,9 +42,9 @@
         <h3>ServletContext对象</h3>
         <p>Thymeleaf可以直接通过${@bean_name}来获取Spring IOC容器中的对象</p>
         <div>
-            <span th:text="${@servletContext.getAttribute('name')}"></span><br/>
-            <span th:text="${@servletContext.getAttribute('email')}"></span><br/>
-            <span th:text="${@servletContext.getAttribute('phone')}"></span><br/>
+            <span th:text="${#servletContext.getAttribute('name')}"></span><br/>
+            <span th:text="${#servletContext.getAttribute('email')}"></span><br/>
+            <span th:text="${#servletContext.getAttribute('phone')}"></span><br/>
         </div>
 
 
