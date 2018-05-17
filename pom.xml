@@ -8,6 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>boot-thymeleaf</module>
+        <module>boot-web</module>
     </modules>
     <packaging>pom</packaging>
 
