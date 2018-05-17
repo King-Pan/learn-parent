@@ -29,8 +29,8 @@ public class TagController {
         user.setRoleName("admin");
         user.setNikeName("库克");
         user.setAge(20);
-
         user.setLastLoginTime(new Date());
+
         session.setAttribute("user", user);
 
         return "thymeleaf-tag";
