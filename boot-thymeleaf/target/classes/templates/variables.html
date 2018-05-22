@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf与SpringMVC集成内置变量</title>
+</head>
+<body>
+    <h1 style="text-align: center">Thymeleaf内置变量</h1>
+
+    <div>
+        <h2>基础对象</h2>
+        <h3>ctx</h3>
+        <div>
+            ctx对象继承org.thymeleaf.context.IContext或者org.thymeleaf.context.IWebContext，
+            取决于当前环境是不是web环境。
+            如果程序集成了spring，那么将会是org.thymeleaf.spring[3|4].context.SpringWebContext
+        </div>
+
+        <h2>web环境对象</h2>
+
+        <h3>HttpServletRequest对象</h3>
+        <p th:text="${requestP1}"></p>
+        <p th:text="${requestP2}"></p>
+        <p th:text="${requestP3}"></p>
+
+        <h3>HttpSession对象</h3>
+
+        <div th:object="${session.user}">
+            <p>
+                欢迎,【<span th:text="*{nikeName}"></span>】登录系统
+                角色【<span th:text="*{roleName}"></span>】
+            </p>
+        </div>
+
+        <h3>SpringMVC Model对象</h3>
+        <div>
+            <span th:text="${springMVCP1}"></span><br/>
+            <span th:text="${springMVCP2}"></span><br/>
+            <span th:text="${springMVCP3}"></span><br/>
+        </div>
+
+        <h3>ServletContext对象</h3>
+        <p>Thymeleaf可以直接通过${@bean_name}来获取Spring IOC容器中的对象</p>
+        <div>
+            <span th:text="${#servletContext.getAttribute('name')}"></span><br/>
+            <span th:text="${#servletContext.getAttribute('email')}"></span><br/>
+            <span th:text="${#servletContext.getAttribute('phone')}"></span><br/>
+        </div>
+
+
+
+        <h3>获取Spring IOC容器中的对象</h3>
+        <div>
+            <span th:text="${@servletContext.getAttribute('name')}"></span><br/>
+            <span th:text="${@servletContext.getAttribute('email')}"></span><br/>
+            <span th:text="${@servletContext.getAttribute('phone')}"></span><br/>
+        </div>
+
+    </div>
+</body>
+</html>

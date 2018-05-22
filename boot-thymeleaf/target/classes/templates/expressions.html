@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 style="text-align: center">Thymeleaf 简单表达式(Simple Expressions)</h1>
+
+<h2>变量表达式</h2>
+<p>
+    <span>${...}  变量表达式</span>
+</p>
+<div th:text="${msg}">变量表达式</div>
+
+<h2>选择变量/*号表达式</h2>
+<p>
+    <span>*{...}  选择变量表达式,主要配合th:object使用</span>
+<div th:object="${user}">
+    用户名:<span th:text="*{userName}">超人</span><br/>
+    角色: <span th:text="*{roleName}">super man</span><br/>
+    年龄: <span th:text="*{age}"></span><br/>
+    最后登录时间: <span th:text="*{#dates.format(lastLoginTime,'yyyy-MM-dd HH:mm')}"></span>
+</div>
+</p>
+
+
+<h2>消息表达式</h2>
+<p>
+    <span>#{...}  消息表达式，获取国际化中的消息</span><br/>
+    <span th:text="#{msg}">国际化消息</span>
+</p>
+
+
+<h2>链接url表达式</h2>
+<p>
+    <span>@{...}  链接url表达式，自动处理为绝对URL，不用担心路径问题</span>
+<ul>
+    <li>没有参数: @{/order/}</li>
+    <li>路径参数: @{/order/${oraderId}}</li>
+    <li>一个请求参数: @{/order/details(orderId=${orderId})}</li>
+    <li>多个请求参数: @{/order/details(orderId=${orderId},type='a')}</li>
+    <li>没有开启cookie: 自动URL重写，";jsessionid=..."被自动添加到URL尾部，支持通过response.encodeURL(...)机制插入自定义的rewriting filter</li>
+</ul>
+</p>
+<a th:href="@{/tag}">Thymeleaf标签</a>
+<a th:href="@{'/tag/' + ${msg}}">路径参数</a>
+<a th:href="@{'/tag/' + ${msg}(id=${time})}">一个请求参数</a>
+<a th:href="@{'/tag/' + ${msg}(id=${time},name='zs')}">多个请求参数</a>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf each</title>
+</head>
+<body>
+<h1 style="text-align: center">Thymeleaf each</h1>
+<div>
+
+    <h2>数组类型数据遍历</h2>
+
+
+    <div>
+        <p>iterStat称作状态变量，属性有: </p>
+        <ul>
+            <li>
+                index:当前迭代对象的index（从0开始计算）
+            </li>
+            <li>
+                count: 当前迭代对象的index(从1开始计算)
+            </li>
+            <li>
+                size:被迭代对象的大小
+            </li>
+            <li>
+                current:当前迭代变量
+            </li>
+            <li>
+                even/odd:布尔值，当前循环是否是偶数/奇数（从0开始计算）
+            </li>
+            <li>
+                first:布尔值，当前循环是否是第一个
+            </li>
+            <li>
+                last:布尔值，当前循环是否是最后一个
+            </li>
+        </ul>
+    </div>
+
+
+    <h3>中国薪资最高城市排名</h3>
+    <div th:each="city,cityStat :${cityArray}">
+        <span th:text="${cityStat.count}"></span><span th:text="${cityStat.current}"></span><br/>
+        <div th:text="'本次共有'+${cityStat.size}+'个城市参与评比,'+${cityStat.current} + '排名第'+${cityStat.count}+'名'"></div>
+    </div>
+
+    <h3>武汉本地知名超市供应商(排名不分先后)</h3>
+    <div th:each="s: ${set}">
+        <p th:text="${s}"></p>
+    </div>
+
+    <h3>企业信息</h3>
+    <div th:each="info,infoStat: ${companyInfo}">
+        <span th:text="${info.key}"></span>:<span th:text="${info.value}"></span>
+        <span th:if="${info.key}=='money'">亿元(人民币)</span>
+        <span th:if="${info.key}=='person'">人</span>
+    </div>
+</body>
+</html>

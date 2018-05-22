@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf 标签</title>
+</head>
+<body>
+<h1 style="text-align: center">Thymeleaf 标签</h1>
+
+
+<h2>th:text 与th:utext标签</h2>
+<p>
+    <span>th:text: 转义特殊字符,html标签直接显示出来</span>
+</p>
+<p>
+    <span>th:utext: 不转义特殊字符，html标签不直接显示出来,支持html的文本替换</span>
+</p>
+
+<div th:text="${text}"></div>
+<div th:utext="${text}"></div>
+
+<h2>th:if与th:unless标签</h2>
+<p>
+    <span>th:if: 为true时显示标签内容</span>
+</p>
+<p>
+    <span>th:unless: 为false是显示标签内容,与th:if相反</span>
+</p>
+<div th:if="${session.user!=null}">
+    <div th:object="${session.user}">
+        欢迎,<span th:text="*{nikeName}"></span>
+        <!--thymeleaf工具类的使用-->
+        当前时间: <span th:text="${#dates.format(session.user.lastLoginTime,'yyyy-MM-dd HH:mm:ss')}"></span>
+        <br/>
+        <p th:unless="${session.user.roleName!='admin'}">
+            <a th:href="@{/manger}">后台管理系统</a>
+        </p>
+    </div>
+</div>
+
+<h2>th:id 标签</h2>
+<p>
+    <span>th:id: 为标签设置id属性</span>
+</p>
+<div th:id="${session.user.getUserName()} +'-'+${session.user.getRoleName()}+'-'+'10001'">
+    <a th:href="@{/}">设置</a>
+</div>
+
+<h2>th:object 标签</h2>
+<p>
+    <span>th:object  替换对象</span>
+</p>
+<div th:object="${session.user}">
+    用户名:<span th:text="*{userName}">超人</span><br/>
+    角色: <span th:text="*{roleName}">super man</span><br/>
+    年龄: <span th:text="*{age}"></span><br/>
+    最后登录时间: <span th:text="*{#dates.format(lastLoginTime,'yyyy-MM-dd HH:mm')}"></span>
+</div>
+<h2>th:attr 标签</h2>
+<p>
+    <span>th:attr  替换属性值</span>
+</p>
+</body>
+</html>

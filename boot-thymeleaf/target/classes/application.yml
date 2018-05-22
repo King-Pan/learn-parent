@@ -1,0 +1,5 @@
+spring:
+  messages:
+    basename: i18n.login,i18n.message
+  thymeleaf:
+    mode: HTML5
