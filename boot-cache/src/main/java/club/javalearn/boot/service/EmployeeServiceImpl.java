@@ -4,9 +4,7 @@ import club.javalearn.boot.mapper.EmployeeMapper;
 import club.javalearn.boot.model.Employee;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +13,7 @@ import org.springframework.stereotype.Service;
  * @author king-pan
  * @date 2018-05-24
  **/
+@CacheConfig(cacheNames = "emp")
 @Service
 @Slf4j
 public class EmployeeServiceImpl implements EmployeeService {
@@ -83,7 +82,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @param employee 员工信息
      * @return
      */
-    @CachePut(value = "emp", key = "#result.id")
+    @CachePut(key = "#result.id")
     @Override
     public Employee updateEmp(Employee employee) {
         log.info("更新员工信息->" + employee);
@@ -101,6 +100,22 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void deleteEmp(Integer id) {
         log.info("删除员工:员工ID ->" + id);
         employeeMapper.deleteEmp(id);
+    }
+
+
+    @Caching(
+            cacheable = {
+                    @Cacheable(value = "emp", key = "#lastName")
+            },
+            put = {
+                    @CachePut(value = "emp", key = "#result.id", condition = "#result!=null"),
+                    @CachePut(cacheNames = "emp", key = "#result.email", condition = "#result!=null")
+            }
+    )
+    @Override
+    public Employee getEmpByLastName(String lastName) {
+        log.info("通过lastName查询员工信息：lastName - >" + lastName);
+        return employeeMapper.getEmpByLastName(lastName);
     }
 
 }

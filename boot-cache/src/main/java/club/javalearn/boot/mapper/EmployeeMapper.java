@@ -3,6 +3,7 @@ package club.javalearn.boot.mapper;
 
 import club.javalearn.boot.model.Employee;
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 
@@ -21,4 +22,7 @@ public interface EmployeeMapper {
 
     @Delete("delete from employee where id=#{id}")
     void deleteEmp(Integer id);
+
+    @Select("select * from employee where last_name = #{lastName}")
+    Employee getEmpByLastName(String lastName);
 }

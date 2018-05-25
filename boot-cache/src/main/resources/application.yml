@@ -1,4 +1,16 @@
 spring:
+  redis:
+    host: 47.92.72.146
+    port: 6379
+    password:
+    timeout: 3600
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+      shutdown-timeout: 100
   datasource:
     url: jdbc:mysql://47.92.72.146:3306/spring_boot
     username: root
@@ -30,4 +42,5 @@ logging:
     org.mybatis: debug
     club.javalearn.boot.mapper: debug #mybatis想要打印SQL语句，就必须在把mapper所在的包日志级别设置为debug
 debug: true
+
 

@@ -13,7 +13,7 @@ import java.util.Arrays;
  * @author king-pan
  * @date 2018-05-24
  **/
-@Configuration
+//@Configuration
 public class MyCaCheConfig {
 
 
