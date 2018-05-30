@@ -11,6 +11,7 @@
         <module>boot-web</module>
         <module>boot-mybatis-config</module>
         <module>bootr-abbitmq</module>
+        <module>design</module>
     </modules>
     <packaging>pom</packaging>
 
